@@ -6,7 +6,7 @@
 #include <time.h>
 #include <stdarg.h>
 
-void do_log(char* module, int line, char* level, char* colour, char* message, ... ) {
+void do_log(char const* module, int line, char const* level, char const* colour, char const* message, ... ) {
 	struct timeval curTime;
 	gettimeofday(&curTime, NULL);
 	int milli = curTime.tv_usec;
@@ -37,4 +37,3 @@ void do_log(char* module, int line, char* level, char* colour, char* message, ..
 		}
 	}
 }
-

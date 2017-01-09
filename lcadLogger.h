@@ -1,3 +1,7 @@
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <stdio.h>
 #include <sys/time.h>
 #include <time.h>
@@ -33,7 +37,7 @@
 #define WHT   "\x1B[37m"
 #define RESET "\x1B[0m"
 
-void do_log(char* module, int line, char* level, char* colour, char* message, ... );
+void do_log(char const* module, int line, char const* level, char const* colour, char const* message, ... );
 
 #define LOG_FATAL(LEVEL,  ... ) {}
 #define LOG_CRITICAL(LEVEL,  ... ) {}
@@ -82,9 +86,13 @@ void do_log(char* module, int line, char* level, char* colour, char* message, ..
 	#define LOG_DEBUG(LEVEL,  ... ) { do_log(LOGMODULE, __LINE__, "DEBUG", CYN, __VA_ARGS__); }
 #endif
 
-/* formal usage LOG(LEVEL, MESSAGE, ARGS */
+/* formal usage LOG(LEVEL, MESSAGE, ARGS) */
 #ifdef LOGGING
 #define LOG(LEVEL, ... ) LOG_##LEVEL(LEVEL, __VA_ARGS__ )
 #else
 #define LOG(LEVEL, ... ) {}
+#endif
+
+#ifdef __cplusplus
+}
 #endif
