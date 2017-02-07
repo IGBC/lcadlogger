@@ -14,7 +14,7 @@ void do_log(char const* module, int line, char const* level, char const* colour,
 	struct tm *local = localtime(&curTime.tv_sec);
 	strftime(buffer, 80, "%Y-%m-%d %H:%M:%S", local);
 	char currentTime[1024] = "";
-	sprintf(currentTime, "%s.%d", buffer, milli);
+	sprintf(currentTime, "%s.%06d", buffer, milli);
 	char format[128];
 	sprintf(format, "%s [%s%s%s] [%s:%i]: %s\n", currentTime, colour, level, RESET, module, line, message);
 	char output[1024];
